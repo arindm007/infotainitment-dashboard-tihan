@@ -15,9 +15,13 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@zegocloud/zego-uikit-prebuilt": "^2.13.1",
     "azure-maps-control": "^3.5.0",
     "azure-maps-rest": "^2.1.1",
+    "big-integer": "^1.6.52",
     "bootstrap": "^5.3.3",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",
     "firebase": "^11.0.2",
     "react": "^18.3.1",
@@ -33,7 +37,8 @@
     "styled-components": "^6.1.13",
     "three-stdlib": "^2.34.0",
     "use-sound": "^4.0.3",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zego-express-engine-webrtc": "^3.7.4"
   },
   "scripts": {
     "start": "react-scripts start",

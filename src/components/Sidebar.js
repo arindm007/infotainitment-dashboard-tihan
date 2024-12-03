@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import { FaHome, FaCar, FaPhone, FaCalendarAlt, FaCog, FaAppStore } from 'react-icons/fa';
+import { SiGooglemeet } from "react-icons/si";
 
 const styles = {
   sidebar: {
@@ -37,11 +38,11 @@ const styles = {
 function Sidebar() {
   const routes = [
     { path: '/', icon: <FaHome /> },
-    { path: '/car', icon: <FaCar /> },
-    { path: '/phone', icon: <FaPhone /> },
     { path: '/calendar', icon: <FaCalendarAlt /> },
-    { path: '/settings', icon: <FaCog /> },
+    { path: '/call', icon: <SiGooglemeet /> },
     { path: '/store', icon: <FaAppStore /> },
+    { path: '/car', icon: <FaCar /> },
+    { path: '/settings', icon: <FaCog /> },
   ];
 
   return (

@@ -9,9 +9,21 @@ import Map from "./components/Map";
 import AuthPage from "./components/AuthPage";
 import PrivateRoute from "./components/PrivateRoute";
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import VideoCallRoom from './components/VideoCall/VideoCall';
 
+// ---------google-oauth-----------
 const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID; // Replace with your actual Client ID
 console.log(CLIENT_ID);
+
+// // --------video call--------
+// const randomID = (len = 5) => {
+//   const chars =
+//     '12345qwertyuiopasdfgh67890jklmnbvcxzMNBVCZXASDQWERTYHGFUIOLKJP';
+//   return Array(len)
+//     .fill(0)
+//     .map(() => chars.charAt(Math.floor(Math.random() * chars.length)))
+//     .join('');
+// };
 
 
 function App() {
@@ -33,6 +45,12 @@ function App() {
     checkAuthStatus();
   }, []);
 
+
+  //------------video call----------------
+  // const roomID = new URLSearchParams(window.location.search).get('roomID') || randomID();
+  // const userID = randomID();
+  // const userName = `user_${randomID()}`;
+
   return (
     
     <Router>
@@ -49,7 +67,7 @@ function App() {
               <Route
                 path="/"
                 element={
-                  <PrivateRoute isAuthenticated={isAuthenticated}>
+                  // <PrivateRoute isAuthenticated={isAuthenticated}>
                     <div style={styles.homeContainer}>
                       <div style={styles.carContainer}>
                         <CarDetails />
@@ -63,15 +81,15 @@ function App() {
                             <MusicApp />
                           </div>
                           <div style={styles.musicContainer}>
-                            <MusicApp />
+                            {/* <MusicApp /> */}
                           </div>
                           <div style={styles.musicContainer}>
-                            <MusicApp />
+                            {/* <MusicApp /> */}
                           </div>
                         </div>
                       </div>
                     </div>
-                  </PrivateRoute>
+                  // </PrivateRoute>
                 }
               />
               <Route
@@ -107,10 +125,11 @@ function App() {
                 }
               />
               <Route
-                path="/phone"
+                path="/call"
                 element={
                   // <PrivateRoute isAuthenticated={isAuthenticated}>
                     <>
+                     <VideoCallRoom />
                     </>
                   // </PrivateRoute>
                 }
@@ -192,7 +211,7 @@ const styles = {
   musicContainer: {
     flex: 1,
     minHeight: "100px",
-    maxHeight: "375px",
+    maxHeight: "400px",
     background: "#2a2a2a",
     color: "white",
     border: "2px solid #444",
