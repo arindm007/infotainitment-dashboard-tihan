@@ -12,6 +12,12 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import VideoCallRoom from './components/VideoCall/VideoCall';
 import Store from "./components/Store/Store";
 import Categories from "./components/Store/Categories";
+import CalendarComponent from "./components/Calendar/Calendar";
+import CalendarScheduler from "./components/Calendar/CalendarScheduler";
+import { registerLicense } from '@syncfusion/ej2-base';
+
+registerLicense(process.env.REACT_APP_syncfusion_License_key);
+
 
 // ---------google-oauth-----------
 const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID; // Replace with your actual Client ID
@@ -84,9 +90,11 @@ function App() {
                           </div>
                           <div>
                             {/* Calender Component here */}
+                            <CalendarComponent />
                           </div>
-                          <div>
+                          <div style={styles.musicContainer}>
                             {/* notification componen here */}
+                            <MusicApp />
                           </div>
                         </div>
                       </div>
@@ -130,10 +138,11 @@ function App() {
                 }
               />
               <Route
-                path="/calender"
+                path="/calendar"
                 element={
                   // <PrivateRoute isAuthenticated={isAuthenticated}>
                     <>
+                    <CalendarScheduler />
                     </>
                   // </PrivateRoute>
                 }
@@ -207,6 +216,7 @@ const styles = {
     flex: 1,
     minHeight: "100px",
     maxHeight: "400px",
+    maxWidth: "300px",
     background: "#2a2a2a",
     color: "white",
     border: "2px solid #444",

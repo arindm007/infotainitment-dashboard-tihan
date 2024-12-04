@@ -12,6 +12,7 @@
   height: 100%; /* Ensures the content stays within allocated height */
   box-sizing: border-box;
   overflow: hidden; /* Prevents content overflow */
+  
 }
 .track-title {
   font-size: 24px;
