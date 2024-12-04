@@ -10,6 +10,7 @@ import AuthPage from "./components/AuthPage";
 import PrivateRoute from "./components/PrivateRoute";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import VideoCallRoom from './components/VideoCall/VideoCall';
+import Store from "./components/Store/Store";
 
 // ---------google-oauth-----------
 const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID; // Replace with your actual Client ID
@@ -96,22 +97,9 @@ function App() {
                 path="/store"
                 element={
                   // <PrivateRoute isAuthenticated={isAuthenticated}>
-                    <>
-                      <div style={styles.details}>
-                        <h3>STORE</h3>
-                      </div>
-                      <div style={styles.rightLowerSection}>
-                        <div style={styles.musicContainer}>
-                          {/* Content for store */}
-                        </div>
-                        <div style={styles.musicContainer}>
-                          {/* Content for store */}
-                        </div>
-                        <div style={styles.musicContainer}>
-                          {/* Content for store */}
-                        </div>
-                      </div>
-                    </>
+                    <div>
+                     <Store />
+                     </div>
                   // </PrivateRoute>
                 }
               />
