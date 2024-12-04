@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import VideoCallRoom from './components/VideoCall/VideoCall';
 import Store from "./components/Store/Store";
+import Categories from "./components/Store/Categories";
 
 // ---------google-oauth-----------
 const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID; // Replace with your actual Client ID
@@ -81,11 +82,11 @@ function App() {
                           <div style={styles.musicContainer}>
                             <MusicApp />
                           </div>
-                          <div style={styles.musicContainer}>
-                            {/* <MusicApp /> */}
+                          <div>
+                            {/* Calender Component here */}
                           </div>
-                          <div style={styles.musicContainer}>
-                            {/* <MusicApp /> */}
+                          <div>
+                            {/* notification componen here */}
                           </div>
                         </div>
                       </div>
@@ -97,9 +98,15 @@ function App() {
                 path="/store"
                 element={
                   // <PrivateRoute isAuthenticated={isAuthenticated}>
-                    <div>
-                     <Store />
-                     </div>
+                    <Categories />
+                  // </PrivateRoute>
+                }
+              />
+              <Route
+                path="/store/:category"
+                element={
+                  // <PrivateRoute isAuthenticated={isAuthenticated}>
+                  <Store />
                   // </PrivateRoute>
                 }
               />

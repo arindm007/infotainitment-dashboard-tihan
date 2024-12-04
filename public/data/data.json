@@ -1,0 +1,218 @@
+[
+  {
+      "id": 1,
+      "name": "OTA Update",
+      "category": "Software",
+      "likes": "Most Reliable",
+      "downloads": "150K",
+      "rating": 4.9,
+      "description": "Provides seamless over-the-air software updates to ensure the latest features and security patches."
+  },
+  {
+      "id": 2,
+      "name": "App Manager",
+      "category": "Software",
+      "likes": "Highly Rated",
+      "downloads": "120K",
+      "rating": 4.8,
+      "description": "Manages third-party app updates and security to enhance system stability and user experience."
+  },
+  {
+      "id": 3,
+      "name": "Spotify",
+      "category": "Infotainment",
+      "likes": "Most Popular",
+      "downloads": "500K",
+      "rating": 4.8,
+      "description": "Stream music and podcasts directly within the infotainment system for a superior in-car experience."
+  },
+  {
+      "id": 4,
+      "name": "Video Player",
+      "category": "Infotainment",
+      "likes": "Trending",
+      "downloads": "100K",
+      "rating": 4.7,
+      "description": "Supports high-quality playback of videos for passenger entertainment during travel."
+  },
+  {
+      "id": 5,
+      "name": "Driver Monitoring System",
+      "category": "Safety",
+      "likes": "Innovative",
+      "downloads": "80K",
+      "rating": 4.9,
+      "description": "Monitors driver health and alertness using heart rate and BP sensors to ensure road safety."
+  },
+  {
+      "id": 6,
+      "name": "Blind Spot Detection",
+      "category": "Safety",
+      "likes": "Critical",
+      "downloads": "90K",
+      "rating": 4.8,
+      "description": "Uses advanced sensors to detect vehicles in blind spots and provide alerts to drivers."
+  },
+  {
+      "id": 7,
+      "name": "ADAS Features",
+      "category": "Functionality",
+      "likes": "Most Advanced",
+      "downloads": "200K",
+      "rating": 4.9,
+      "description": "Includes AEB (Automatic Emergency Braking), ACC (Adaptive Cruise Control), and Lane Keep Assist."
+  },
+  {
+      "id": 8,
+      "name": "Automated Parking",
+      "category": "Functionality",
+      "likes": "Highly Convenient",
+      "downloads": "75K",
+      "rating": 4.7,
+      "description": "Helps drivers with precise and effortless parking in tight spaces."
+  },
+  {
+      "id": 9,
+      "name": "Ambient Light Services",
+      "category": "Aesthetics",
+      "likes": "Stylish",
+      "downloads": "65K",
+      "rating": 4.6,
+      "description": "Customizable ambient lighting for enhanced in-car aesthetics and mood."
+  },
+  {
+      "id": 10,
+      "name": "User Preferences",
+      "category": "Aesthetics",
+      "likes": "User-Friendly",
+      "downloads": "50K",
+      "rating": 4.5,
+      "description": "Allows users to adjust seat height, light intensity, and other preferences for personalized comfort."
+  },
+  {
+      "id": 11,
+      "name": "Sensor Health Monitor",
+      "category": "Diagnostics",
+      "likes": "Reliable",
+      "downloads": "95K",
+      "rating": 4.8,
+      "description": "Tracks the health of critical sensors and provides alerts for predictive maintenance."
+  },
+  {
+      "id": 12,
+      "name": "Tyre Pressure Monitoring",
+      "category": "Diagnostics",
+      "likes": "Essential",
+      "downloads": "85K",
+      "rating": 4.7,
+      "description": "Monitors tire pressure in real-time and alerts the driver in case of abnormalities."
+  },
+  {
+      "id": 13,
+      "name": "Security Patch Manager",
+      "category": "Software",
+      "likes": "Top-Secured",
+      "downloads": "110K",
+      "rating": 4.8,
+      "description": "Delivers regular security updates to protect against vulnerabilities and ensure data safety."
+  },
+  {
+      "id": 14,
+      "name": "Crash Recovery System",
+      "category": "Software",
+      "likes": "Reliable",
+      "downloads": "85K",
+      "rating": 4.7,
+      "description": "Automatically restarts critical systems in case of unexpected crashes to ensure minimal downtime."
+  },
+  {
+      "id": 15,
+      "name": "YouTube",
+      "category": "Infotainment",
+      "likes": "Widely Loved",
+      "downloads": "300K",
+      "rating": 4.9,
+      "description": "Streams your favorite videos and playlists on the infotainment screen during long drives."
+  },
+  {
+      "id": 16,
+      "name": "Gaming Hub",
+      "category": "Infotainment",
+      "likes": "Fun & Interactive",
+      "downloads": "70K",
+      "rating": 4.5,
+      "description": "Offers a variety of casual games for passengers to enjoy while traveling."
+  },
+  {
+      "id": 17,
+      "name": "Fatigue Alert System",
+      "category": "Safety",
+      "likes": "Critical for Drivers",
+      "downloads": "120K",
+      "rating": 4.9,
+      "description": "Analyzes driver behavior and provides alerts when signs of fatigue or drowsiness are detected."
+  },
+  {
+      "id": 18,
+      "name": "Collision Avoidance System",
+      "category": "Safety",
+      "likes": "Life-Saving",
+      "downloads": "95K",
+      "rating": 4.8,
+      "description": "Warns drivers about potential collisions and assists in evasive maneuvers."
+  },
+  {
+      "id": 19,
+      "name": "Personal Assistant AI",
+      "category": "Functionality",
+      "likes": "Intelligent",
+      "downloads": "140K",
+      "rating": 4.8,
+      "description": "Voice-controlled assistant for navigation, calling, and controlling car settings."
+  },
+  {
+      "id": 20,
+      "name": "Smart Navigation",
+      "category": "Functionality",
+      "likes": "Most Useful",
+      "downloads": "190K",
+      "rating": 4.9,
+      "description": "Provides real-time traffic updates and adaptive route suggestions for stress-free travel."
+  },
+  {
+      "id": 21,
+      "name": "Climate Control Personalization",
+      "category": "Aesthetics",
+      "likes": "Comfort-Oriented",
+      "downloads": "60K",
+      "rating": 4.6,
+      "description": "Allows users to adjust climate settings for individual zones within the car."
+  },
+  {
+      "id": 22,
+      "name": "Mood-Based Light Settings",
+      "category": "Aesthetics",
+      "likes": "Innovative",
+      "downloads": "45K",
+      "rating": 4.5,
+      "description": "Automatically adjusts ambient lighting based on detected or chosen moods."
+  },
+  {
+      "id": 23,
+      "name": "Battery Health Monitor",
+      "category": "Diagnostics",
+      "likes": "Comprehensive",
+      "downloads": "88K",
+      "rating": 4.7,
+      "description": "Tracks battery performance and provides alerts for necessary maintenance or replacement."
+  },
+  {
+      "id": 24,
+      "name": "Remote Vehicle Access",
+      "category": "Diagnostics",
+      "likes": "Convenient",
+      "downloads": "110K",
+      "rating": 4.9,
+      "description": "Allows remote access to lock, unlock, or start the vehicle using a mobile app."
+  }
+]
