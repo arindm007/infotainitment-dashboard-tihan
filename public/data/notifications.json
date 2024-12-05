@@ -1,0 +1,17 @@
+[
+    {
+      "type": "maintenance",
+      "title": "Maintenance request update",
+      "description": "The maintenance request for John Doe in Apartment 301 has been completed.",
+      "timestamp": "5h ago",
+      "read": false
+    },
+    {
+      "type": "payment",
+      "title": "Rent Payment Confirmation",
+      "description": "We have received the rent payment of $1,200 for Jane Smith in Apartment 102.",
+      "timestamp": "7h ago",
+      "read": true
+    }
+  ]
+  

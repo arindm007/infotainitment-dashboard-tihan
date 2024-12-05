@@ -14,8 +14,9 @@ import Store from "./components/Store/Store";
 import Categories from "./components/Store/Categories";
 import CalendarComponent from "./components/Calendar/Calendar";
 import CalendarScheduler from "./components/Calendar/CalendarScheduler";
+import CarDashboardSettings from "./components/Settings/Settings";
 import { registerLicense } from '@syncfusion/ej2-base';
-
+import NotificationsPane from "./components/Notification/Notification";
 registerLicense(process.env.REACT_APP_syncfusion_License_key);
 
 
@@ -92,10 +93,10 @@ function App() {
                             {/* Calender Component here */}
                             <CalendarComponent />
                           </div>
-                          <div style={styles.musicContainer}>
+                          {/* <div style={styles.NotificationsPane}> */}
                             {/* notification componen here */}
-                            <MusicApp />
-                          </div>
+                            <NotificationsPane />
+                          {/* </div> */}
                         </div>
                       </div>
                     </div>
@@ -143,6 +144,16 @@ function App() {
                   // <PrivateRoute isAuthenticated={isAuthenticated}>
                     <>
                     <CalendarScheduler />
+                    </>
+                  // </PrivateRoute>
+                }
+              />
+              <Route
+                path="/settings"
+                element={
+                  // <PrivateRoute isAuthenticated={isAuthenticated}>
+                    <>
+                    <CarDashboardSettings />
                     </>
                   // </PrivateRoute>
                 }
@@ -216,7 +227,23 @@ const styles = {
     flex: 1,
     minHeight: "100px",
     maxHeight: "400px",
-    maxWidth: "300px",
+    minWidth: "300px",
+    maxWidth: "600px",
+    background: "#2a2a2a",
+    color: "white",
+    border: "2px solid #444",
+    borderRadius: "10px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "10px",
+  },
+  NotificationsPane: {
+    flex: 1,
+    // minHeight: "100px",
+    maxHeight: "600px",
+    maxWidth: "600px",
     background: "#2a2a2a",
     color: "white",
     border: "2px solid #444",

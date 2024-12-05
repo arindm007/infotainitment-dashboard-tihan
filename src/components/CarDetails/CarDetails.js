@@ -2,8 +2,8 @@
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { useGLTF, Stage, PresentationControls } from "@react-three/drei";
-import Gauge from "./Guages";
-import { height, width } from "@fortawesome/free-solid-svg-icons/fa0";
+import Speedometer from "./Speedometer";
+
 
 function Model(props) {
   const { scene } = useGLTF("/car.glb");
@@ -12,11 +12,7 @@ function Model(props) {
 
 function CarDetails() {
   return (
-    <div style={styles.container}>
-        <div style={styles.details}>
-        <h3>T-SIRIUS</h3>
-   
-      </div>
+    <div>
       <div style={styles.modelWrapper}>
         <Canvas dpr={[1, 2]} shadows camera={{ fov: 30 }}>
           <ambientLight intensity={1.5} />
@@ -32,11 +28,11 @@ function CarDetails() {
               <Model scale={0.3} />
             </Stage>
           </PresentationControls>
-        </Canvas>
+        </Canvas> 
+        <Speedometer />
       </div>
-      <p>Fuel: 43% | Battery: 8% | Range: 157km</p>
-        <div style={{ width: "100%", height: "200px" }}>
-          <Gauge />
+        <div>
+         
         </div>
       
     </div>
@@ -46,20 +42,20 @@ function CarDetails() {
 const styles = {
   container: {
     width: "100%",
-    height: "-5px",
+    // height: "-5px",
     minHeight: "100px",
     maxHeight: "600px",
-    padding: "20px",
-    background: "#333",
+    padding: "10px",
     color: "white",
     borderRadius: "10px",
   },
   modelWrapper: {
     width: "100%",
-    height: "200px", // Adjust height based on your model
+    height: "300px", // Adjust height based on your model
     marginBottom: "10px", // Add space between model and text
     minHeight: "100px",
     maxHeight: "300px",
+    // background: "linear-gradient(135deg, #333, #1a1a1a)"
   },
   details: {
     color: "white",

@@ -33,7 +33,7 @@ const CalendarScheduler = () => {
     return (
       <div className="calendar-container">
         <ScheduleComponent
-          height="650px"
+          height="850px"
           selectedDate={new Date()} // Set the selected date to today
           eventSettings={{ dataSource: eventData }}
           currentView="Week" // Set the default view

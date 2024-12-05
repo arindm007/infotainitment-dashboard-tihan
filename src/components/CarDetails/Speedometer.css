@@ -1,0 +1,128 @@
+/* General Container */
+.dashboard-container {
+    font-family: "Arial", sans-serif;
+    color: #fff;
+    background: linear-gradient(135deg, #333, #1a1a1a);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Speedometer */
+  .speedometer {
+    position: relative;
+    width: 300px;
+    height: 150px;
+    margin: 20px auto;
+  }
+  
+  .speedometer-svg {
+    width: 100%;
+    height: auto;
+  }
+  
+  .speedometer path {
+    stroke-dasharray: 360; /* Total arc length */
+    stroke-dashoffset: calc(180 - (180 * var(--speed)) / 140);
+    transition: stroke-dashoffset 0.3s ease-in-out;
+  }
+  
+  .speed-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+  }
+  
+  .speed-display h1 {
+    font-size: 2.5rem;
+    margin: 0;
+  }
+  
+  .speed-display p {
+    font-size: 1rem;
+    margin: 0;
+    color: #aaa;
+  }
+  
+  /* Information Cards */
+  .info-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+  .info-card {
+    background: #222;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  
+  .info-card h4 {
+    margin: 0;
+    font-size: 1rem;
+  }
+  
+  .info-card p {
+    font-size: 1.5rem;
+    color: #4caf50;
+  }
+  
+  /* Gear Selector */
+  .gear-selector {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .gear {
+    background: #222;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  .gear:hover {
+    background: #4caf50;
+    transform: scale(1.1);
+  }
+  
+  .active-gear {
+    background: #4caf50;
+  }
+  
+  /* Speed Control Buttons */
+  .speed-control {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .speed-control button {
+    background: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .speed-control button:hover {
+    background: #388e3c;
+  }
+  
