@@ -32,6 +32,7 @@
     "react-battery-gauge": "^1.0.7",
     "react-bootstrap": "^2.10.6",
     "react-calendar": "^5.1.0",
+    "react-countdown-circle-timer": "^3.2.1",
     "react-d3-speedometer": "^2.2.1",
     "react-dom": "^18.3.1",
     "react-dotenv": "^0.1.3",

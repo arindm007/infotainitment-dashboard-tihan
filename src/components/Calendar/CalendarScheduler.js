@@ -1,6 +1,6 @@
 import React from "react";
 import { ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, Inject } from "@syncfusion/ej2-react-schedule";
-
+import { Typography } from "@mui/material";
 import '@syncfusion/ej2-react-schedule/styles/material-dark.css';
 import '@syncfusion/ej2-base/styles/material-dark.css';
 import '@syncfusion/ej2-buttons/styles/material-dark.css';
@@ -32,6 +32,9 @@ const CalendarScheduler = () => {
   
     return (
       <div className="calendar-container">
+        <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold", mb: 4 }}>
+        Calendar
+        </Typography>
         <ScheduleComponent
           height="850px"
           selectedDate={new Date()} // Set the selected date to today

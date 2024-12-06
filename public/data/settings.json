@@ -1,0 +1,27 @@
+
+{
+    "id": 1,
+    "car": {
+      "make": "Subaru",
+      "model": "Forester Premium Plus",
+      "year": 2013,
+      "color": "Blue",
+      "mileage": "12 City / 26 Highway",
+      "transmission": "Automatic",
+      "highlight": "Run and Drive",
+      "damage": "Front Left",
+      "vin": "WAILFAF9DA*****",
+      "value": 9050,
+      "images": [
+        "https://via.placeholder.com/300x200",
+        "https://via.placeholder.com/300x200",
+        "https://via.placeholder.com/300x200"
+      ]
+    },
+    "location": "Champlin, Othoberh, HI",
+    "timeLeft": "10d 12hrs",
+    "auctionEnd": "Sunday, 9:40PM",
+    "activeBids": 18,
+    "currentBid": 14000,
+    "documents": ["Bill of Sale", "Buyer's Gulden", "Country of Title Issuance", "Application of Texas"]
+  }

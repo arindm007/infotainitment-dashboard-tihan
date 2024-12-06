@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios"; // For API calls
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
+import Header from "./components/Header/Header";
+import Sidebar from "./components/Sidebar/Sidebar";
 import CarDetails from "./components/CarDetails/CarDetails";
 import MusicApp from "./components/MusicPlayer/MusicApp";
-import Map from "./components/Map";
+import Map from "./components/Map/Map";
 import AuthPage from "./components/AuthPage";
 import PrivateRoute from "./components/PrivateRoute";
 import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -14,7 +14,7 @@ import Store from "./components/Store/Store";
 import Categories from "./components/Store/Categories";
 import CalendarComponent from "./components/Calendar/Calendar";
 import CalendarScheduler from "./components/Calendar/CalendarScheduler";
-import CarDashboardSettings from "./components/Settings/Settings";
+import Settings from "./components/Settings/Settings";
 import { registerLicense } from '@syncfusion/ej2-base';
 import NotificationsPane from "./components/Notification/Notification";
 registerLicense(process.env.REACT_APP_syncfusion_License_key);
@@ -153,7 +153,7 @@ function App() {
                 element={
                   // <PrivateRoute isAuthenticated={isAuthenticated}>
                     <>
-                    <CarDashboardSettings />
+                    <Settings />
                     </>
                   // </PrivateRoute>
                 }
