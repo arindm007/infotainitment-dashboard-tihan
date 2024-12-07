@@ -82,11 +82,13 @@ const Speedometer = () => {
 
       {/* Speed Control */}
       <div className="speed-control">
-        <button onClick={() => setSpeed((prev) => (prev < 140 ? prev + 10 : 140))}>
-          Increase Speed
-        </button>
+        
         <button onClick={() => setSpeed((prev) => (prev > 0 ? prev - 10 : 0))}>
           Decrease Speed
+        </button>
+
+        <button onClick={() => setSpeed((prev) => (prev < 140 ? prev + 10 : 140))}>
+          Increase Speed
         </button>
       </div>
     </div>

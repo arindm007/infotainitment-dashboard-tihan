@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import { FaHome, FaCar, FaPhone, FaCalendarAlt, FaCog, FaAppStore } from 'react-icons/fa';
-import { SiGooglemeet } from "react-icons/si";
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { FaHome, FaCar, FaCalendarAlt, FaCog, FaAppStore } from 'react-icons/fa';
+import { SiGooglemeet } from 'react-icons/si';
 
 const styles = {
   sidebar: {
@@ -26,16 +26,25 @@ const styles = {
     transition: 'background-color 0.3s',
     cursor: 'pointer',
   },
-  iconWrapperHover: {
+  iconWrapperActive: {
     backgroundColor: '#d6d6d6',
+  },
+  iconWrapperHover: {
+    backgroundColor: '#777777',
   },
   icon: {
     color: '#fff',
     fontSize: '1.5rem',
   },
+  iconActive: {
+    color: '#1a1a1a',
+  },
 };
 
 function Sidebar() {
+  const location = useLocation();
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
   const routes = [
     { path: '/', icon: <FaHome /> },
     { path: '/calendar', icon: <FaCalendarAlt /> },
@@ -47,21 +56,34 @@ function Sidebar() {
 
   return (
     <nav style={styles.sidebar}>
-      {routes.map((route, index) => (
-        <Link
-          to={route.path}
-          key={index}
-          style={{ textDecoration: 'none' }}
-        >
-          <div
-            style={styles.iconWrapper}
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = styles.iconWrapperHover.backgroundColor)}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = styles.iconWrapper.backgroundColor)}
+      {routes.map((route, index) => {
+        const isActive = location.pathname === route.path;
+        const isHovered = hoveredIndex === index;
+
+        return (
+          <Link
+            to={route.path}
+            key={index}
+            style={{ textDecoration: 'none' }}
           >
-            {React.cloneElement(route.icon, { style: styles.icon })}
-          </div>
-        </Link>
-      ))}
+            <div
+              style={{
+                ...styles.iconWrapper,
+                ...(isActive && styles.iconWrapperActive),
+                ...(isHovered && !isActive && styles.iconWrapperHover), // Apply hover style only if not active
+              }}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+              {React.cloneElement(route.icon, {
+                style: isActive
+                  ? { ...styles.icon, ...styles.iconActive }
+                  : styles.icon,
+              })}
+            </div>
+          </Link>
+        );
+      })}
     </nav>
   );
 }

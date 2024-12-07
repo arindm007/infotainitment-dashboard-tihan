@@ -21,7 +21,8 @@ import {
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { color, styled } from "@mui/system";
-import { FiShield, FiActivity, FiBell, FiShare2, FiSettings, FiHexagon } from "react-icons/fi";
+import { FiShield, FiActivity, FiBell, FiShare2, FiSettings } from "react-icons/fi";
+import { IoColorWandSharp } from "react-icons/io5";
 
 
 const theme = createTheme({
@@ -84,7 +85,7 @@ const SeatSettings = ({ reclination, setReclination }) => (
 
 const AmbientColorSettings = ({ ambientColor, setAmbientColor }) => (
   <StyledPaper>
-    <SectionHeader icon={FiHexagon} title="Ambient Color Settings" />
+    <SectionHeader icon={IoColorWandSharp} title="Ambient Color Settings" />
     <Box>
       <Typography gutterBottom>Ambient Color</Typography>
       <TextField
