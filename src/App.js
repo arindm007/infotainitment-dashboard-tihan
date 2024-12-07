@@ -17,7 +17,7 @@ import CalendarScheduler from "./components/Calendar/CalendarScheduler";
 import Settings from "./components/Settings/Settings";
 import { registerLicense } from '@syncfusion/ej2-base';
 import NotificationsPane from "./components/Notification/Notification";
-import Vehicle from "./Vehicle/vehicle";
+import Vehicle from "./components/Vehicle/vehicle";
 registerLicense(process.env.REACT_APP_syncfusion_License_key);
 
 
