@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaHome, FaCar, FaCalendarAlt, FaCog, FaAppStore } from 'react-icons/fa';
+import { FaHome, FaCar, FaCalendarAlt, FaCog, FaAppStore, FaLightbulb } from 'react-icons/fa';
 import { SiGooglemeet } from 'react-icons/si';
 
 const styles = {
@@ -51,8 +51,15 @@ function Sidebar() {
     { path: '/call', icon: <SiGooglemeet /> },
     { path: '/store', icon: <FaAppStore /> },
     { path: '/car', icon: <FaCar /> },
+    { path: '/ambientcolor', icon: <FaLightbulb />, external: true },
     { path: '/settings', icon: <FaCog /> },
   ];
+
+  const handleNavigation = (route) => {
+    if (route.external) {
+      window.location.href = 'http://localhost:4000'; // Redirect to external URL
+    }
+  };
 
   return (
     <nav style={styles.sidebar}>
@@ -60,7 +67,25 @@ function Sidebar() {
         const isActive = location.pathname === route.path;
         const isHovered = hoveredIndex === index;
 
-        return (
+        return route.external ? (
+          <div
+            key={index}
+            style={{
+              ...styles.iconWrapper,
+              ...(isActive && styles.iconWrapperActive),
+              ...(isHovered && !isActive && styles.iconWrapperHover),
+            }}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
+            onClick={() => handleNavigation(route)}
+          >
+            {React.cloneElement(route.icon, {
+              style: isActive
+                ? { ...styles.icon, ...styles.iconActive }
+                : styles.icon,
+            })}
+          </div>
+        ) : (
           <Link
             to={route.path}
             key={index}
@@ -70,7 +95,7 @@ function Sidebar() {
               style={{
                 ...styles.iconWrapper,
                 ...(isActive && styles.iconWrapperActive),
-                ...(isHovered && !isActive && styles.iconWrapperHover), // Apply hover style only if not active
+                ...(isHovered && !isActive && styles.iconWrapperHover),
               }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}

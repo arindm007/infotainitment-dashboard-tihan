@@ -2,8 +2,8 @@
 import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { useGLTF, Stage, PresentationControls } from "@react-three/drei";
+import { FaSyncAlt } from "react-icons/fa"; // Import the refresh icon
 import Speedometer from "./Speedometer";
-
 
 function Model(props) {
   const { scene } = useGLTF("/car.glb");
@@ -11,30 +11,20 @@ function Model(props) {
 }
 
 function CarDetails() {
+  const handleRefresh = () => {
+    // Refresh functionality (if needed)
+    console.log("Refreshing...");
+  };
+
   return (
     <div>
       <div style={styles.modelWrapper}>
-        <Canvas dpr={[1, 2]} shadows camera={{ fov: 30 }}>
-          <ambientLight intensity={1.5} />
-          <PresentationControls
-            scale={0.3}
-            speed={1.5}
-            global
-            zoom={1}
-            polar={[0.2, Math.PI / 4]}
-            azimuth={[12, Math.PI / 5]}
-          >
-            <Stage environment={null}>
-              <Model scale={0.3} />
-            </Stage>
-          </PresentationControls>
-        </Canvas> 
+        <div style={styles.titleWrapper}>
+          <h1 style={styles.title}>T-SIRIUS: PIXKIT 2.0</h1>
+          <FaSyncAlt style={styles.refreshIcon} onClick={handleRefresh} />
+        </div>
         <Speedometer />
       </div>
-        <div>
-         
-        </div>
-      
     </div>
   );
 }
@@ -42,7 +32,6 @@ function CarDetails() {
 const styles = {
   container: {
     width: "100%",
-    // height: "-5px",
     minHeight: "100px",
     maxHeight: "600px",
     padding: "10px",
@@ -55,12 +44,29 @@ const styles = {
     marginBottom: "10px", // Add space between model and text
     minHeight: "100px",
     maxHeight: "300px",
-    // background: "linear-gradient(135deg, #333, #1a1a1a)"
+    position: "relative", // Added for absolute positioning of refresh icon
   },
-  details: {
+  titleWrapper: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "10px", // Space between title and icon
     color: "white",
-    textAlign: "center",
     marginBottom: "20px",
+    position: "relative",
+  },
+  title: {
+    fontSize: "24px",
+    fontWeight: "bold",
+  },
+  refreshIcon: {
+    fontSize: "20px",
+    cursor: "pointer",
+    transition: "transform 0.2s ease",
+    position: "absolute",
+    right: "10px", // Push the icon to the right corner
+    top: "50%", // Center vertically
+    transform: "translateY(-50%)", // Adjust for vertical alignment
   },
 };
 

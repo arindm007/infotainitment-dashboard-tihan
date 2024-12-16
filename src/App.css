@@ -1,5 +1,15 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+  height: 100%; /* Ensure it occupies the full viewport */
+}
+
 .App {
   text-align: center;
+  overflow: hidden; /* Disable scrolling */
+  height: 100%; /* Ensure it takes the full viewport */
+  width: 100%;
 }
 
 .App-logo {

@@ -169,9 +169,11 @@ function App() {
 const styles = {
   dashboard: {
     display: "flex",
-    height: "100vh",
+    height: "100vh", // Full viewport height
+    width: "100vw",  // Full viewport width
     background: "#1a1a1a",
-    overflow: "hidden",
+    overflow: "hidden", // Prevent scrolling
+    flexDirection: "row",
   },
   details: {
     color: "white",
@@ -190,6 +192,7 @@ const styles = {
     gap: "10px",
     padding: "20px",
     flexWrap: "wrap",
+    overflow:"hidden"
   },
   homeContainer: {
     display: "flex",
@@ -213,6 +216,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "10px",
+    // overflow:"hidden",
     flex: 1,
     minWidth: "300px",
   },
@@ -253,6 +257,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     padding: "10px",
+    
   },
   mapContainer: {
     flex: 1,

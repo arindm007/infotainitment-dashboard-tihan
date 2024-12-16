@@ -62,7 +62,7 @@ export default function VideoCallRoom() {
     <div
       className="myCallContainer"
       ref={containerRef}
-      style={{ width: '100vw', height: '100vh' }}
+      style={{ width: '100vw', height: '90vh' }}
     ></div>
   );
 }
