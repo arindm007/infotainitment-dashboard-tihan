@@ -16,7 +16,7 @@ const Speedometer = () => {
   useEffect(() => {
     const fetchSpeed = async () => {
       try {
-        const response = await axios.get("http://192.168.20.166:5001/api/speed");
+        const response = await axios.get("http://192.168.2.129:5001/api/speed");
         if (response.data && response.data.speed) {
           // Extract numeric value from "data: 65"
           const speedValue = parseInt(response.data.speed.split(":")[1].trim(), 10);

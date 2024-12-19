@@ -105,7 +105,7 @@ const getColorName = (hex) => {
   console.log(colorName);
   
     try {
-      await axios.post("http://192.168.20.167:5000/set_color", {
+      await axios.post("http://192.168.2.129:5000/set_color", {
         "color": colorName,
       });
       console.log(`Color set successfully: ${newColor}`);

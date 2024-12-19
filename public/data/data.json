@@ -249,6 +249,26 @@
     "rating": 4.6,
     "description": "Enables real-time video communication directly from the vehicle's infotainment system.",
     "status": "available"
+  },
+  {
+    "id": 25,
+    "name": "Lidar 2.0.0",
+    "category": "Firmware",
+    "likes": "Advance Update",
+    "downloads": "5K",
+    "rating": 4.6,
+    "description": "Enhances the existing firmware with an upgraded object detection module and an improved emergency braking algorithm.",
+    "status": "available"
+  },
+  {
+    "id": 26,
+    "name": "Ultrasonic 2.0.0",
+    "category": "Firmware",
+    "likes": "Advance Update",
+    "downloads": "5K",
+    "rating": 4.6,
+    "description": "Optimizes the ultrasonic firmware with updated parameters for enhanced object detection and refined emergency braking functionality",
+    "status": "available"
   }
   
 ]
