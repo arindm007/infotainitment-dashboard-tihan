@@ -172,7 +172,7 @@ const styles = {
     height: "100vh", // Full viewport height
     width: "100vw",  // Full viewport width
     background: "#1a1a1a",
-    overflow: "hidden", // Prevent scrolling
+    overflow: "auto", // Prevent scrolling
     flexDirection: "row",
   },
   details: {
@@ -192,7 +192,7 @@ const styles = {
     gap: "10px",
     padding: "20px",
     flexWrap: "wrap",
-    overflow:"hidden"
+    overflow:"auto"
   },
   homeContainer: {
     display: "flex",

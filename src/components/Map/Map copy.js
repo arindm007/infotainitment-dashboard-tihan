@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import * as atlas from "azure-maps-control";
 import axios from "axios";
-import { FaDirections } from "react-icons/fa";
-
+import { width } from "@fortawesome/free-solid-svg-icons/fa0";
+import { FaDirections } from 'react-icons/fa';
 const MapWithRoutes = () => {
   const mapRef = useRef(null);
   const mapInstance = useRef(null);
@@ -10,8 +10,6 @@ const MapWithRoutes = () => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [routeDetails, setRouteDetails] = useState(null);
-  const [liveMarker, setLiveMarker] = useState(null);
-  const [intervalId, setIntervalId] = useState(null);
   const apiKey = process.env.REACT_APP_AZURE_MAPS_API_KEY;
 
   useEffect(() => {
@@ -29,6 +27,13 @@ const MapWithRoutes = () => {
             authOptions: {
               authType: atlas.AuthenticationType.subscriptionKey,
               subscriptionKey: apiKey,
+            },
+            enableAccessibility: false,
+            keyboardInteractionEnabled: false,
+            showLogo: false,
+            showFeedbackLink: false,
+            attributionControl: {
+              compact: true,
             },
           });
         }
@@ -78,45 +83,6 @@ const MapWithRoutes = () => {
     getRoute(currentLocation, destinationCoordinates);
   };
 
-  const moveMarkerAlongRoute = (coordinates) => {
-    if (intervalId) {
-      clearInterval(intervalId);
-    }
-
-    // Remove existing marker if present
-    if (liveMarker) {
-      mapInstance.current.markers.remove(liveMarker);
-    }
-
-    const marker = new atlas.HtmlMarker({
-      position: coordinates[0],
-      color: "red",
-    });
-
-    // Ensure mapInstance.current is available before adding marker
-    if (mapInstance.current) {
-      mapInstance.current.markers.add(marker);
-      setLiveMarker(marker);
-    } else {
-      console.error("Map instance is not initialized.");
-      return;
-    }
-
-    let index = 0;
-    const speed = 1000; // Move every 1 second
-
-    const id = setInterval(() => {
-      if (index < coordinates.length) {
-        marker.setOptions({ position: coordinates[index] });
-        index++;
-      } else {
-        clearInterval(id);
-      }
-    }, speed);
-
-    setIntervalId(id);
-  };
-
   const getRoute = async (start, end) => {
     const url = "https://atlas.microsoft.com/route/directions/json";
     try {
@@ -152,9 +118,6 @@ const MapWithRoutes = () => {
           bounds: atlas.data.BoundingBox.fromData(routeLine),
           padding: 50,
         });
-
-        // Move marker along the route
-        moveMarkerAlongRoute(coordinates);
       } else {
         console.error("No routes found.");
         alert("No routes found. Please check your input.");
@@ -164,14 +127,6 @@ const MapWithRoutes = () => {
       alert("An error occurred while fetching the route.");
     }
   };
-
-  useEffect(() => {
-    return () => {
-      if (intervalId) {
-        clearInterval(intervalId);
-      }
-    };
-  }, [intervalId]);
 
   return (
     <div style={styles.mapContainer}>
@@ -202,11 +157,23 @@ const MapWithRoutes = () => {
           onClick={() => handleSearchChange({ target: { value: query } })}
           style={styles.getDirectionsButton}
         >
-          <FaDirections />
+           <FaDirections />
         </button>
       </div>
 
       <div ref={mapRef} style={styles.mapView}></div>
+
+      {/* {routeDetails && (
+        <div style={styles.routeDetails}>
+          <h3>Route Details</h3>
+          <p>
+            <strong>Distance:</strong> {(routeDetails.summary.lengthInMeters / 1000).toFixed(2)} km
+          </p>
+          <p>
+            <strong>Estimated Time:</strong> {(routeDetails.summary.travelTimeInSeconds / 60).toFixed(2)} minutes
+          </p>
+        </div>
+      )} */}
     </div>
   );
 };
@@ -215,21 +182,15 @@ const styles = {
   mapContainer: {
     minHeight: "200px",
     maxHeight: "400px",
-    width: "100%",
+    width: '100%',
     padding: "10px",
     background: "#333",
     color: "black",
     borderRadius: "10px",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-    background: "linear-gradient(150deg, #333, #1a1a1a)",
-    boxSizing: "border-box",
+    background: "linear-gradient(150deg, #333, #333,, #1a1a1a)",
+    boxsizing: "border-box",
   },
-  '@media (max-width: 768px)': {
-    mapContainer: {
-      minHeight: '150px',
-    },
-  },
-
   searchContainer: {
     display: "flex",
     justifyContent: "space-around",
@@ -240,7 +201,7 @@ const styles = {
     width: "60%",
   },
   searchInput: {
-    width: "100%",
+    width: "120%",
     padding: "10px",
     border: "1px solid #ccc",
     borderRadius: "4px",
@@ -277,8 +238,17 @@ const styles = {
   mapView: {
     width: "100%",
     height: "300px",
-    borderRadius: "10px",
-    overflow: "hidden",
+    // marginTop: "10px",
+    borderRadius:"10px",
+    overflow:"hidden"
+    
+
+  },
+  routeDetails: {
+    padding: "10px",
+    backgroundColor: "#333333",
+    border: "1px solid #ccc",
+    color: "#FAFAFA",
   },
 };
 

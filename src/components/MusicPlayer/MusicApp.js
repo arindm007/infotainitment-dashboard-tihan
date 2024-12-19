@@ -3,10 +3,11 @@ import useSound from "use-sound"; // For sound handling
 import { AiFillPlayCircle, AiFillPauseCircle } from "react-icons/ai"; // Play/Pause icons
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi"; // Skip icons
 import { IconContext } from "react-icons";
-import CornfieldChase from "../MusicPlayer/assets/CornfieldChase.mp3"; // Your music file
-import './MusicApp.css'; // Import your styles
+
+import "./MusicApp.css"; // Import your styles
 
 function MusicApp() {
+  const CornfieldChase = `${process.env.PUBLIC_URL}/CornfieldChase.mp3`;
   const [isPlaying, setIsPlaying] = useState(false);
   const [time, setTime] = useState({ min: "0", sec: "0" });
   const [currTime, setCurrTime] = useState({ min: "0", sec: "0" });

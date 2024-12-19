@@ -20,8 +20,8 @@ function CarDetails() {
     <div>
       <div style={styles.modelWrapper}>
         <div style={styles.titleWrapper}>
-          <h1 style={styles.title}>T-SIRIUS: PIXKIT 2.0</h1>
-          <FaSyncAlt style={styles.refreshIcon} onClick={handleRefresh} />
+          <h1 style={styles.title}>T-SIRIUS: TiHAN SOFTWARE DEFINED VEHICLE</h1>
+          {/* <FaSyncAlt style={styles.refreshIcon} onClick={handleRefresh} /> */}
         </div>
         <Speedometer />
       </div>
@@ -34,7 +34,7 @@ const styles = {
     width: "100%",
     minHeight: "100px",
     maxHeight: "600px",
-    padding: "10px",
+    padding: "5px",
     color: "white",
     borderRadius: "10px",
   },
@@ -50,21 +50,23 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: "10px", // Space between title and icon
+    gap: "20px", // Space between title and icon
     color: "white",
     marginBottom: "20px",
+   
     position: "relative",
   },
   title: {
-    fontSize: "24px",
+    fontSize: "23px",
     fontWeight: "bold",
+    textAlign: "center"
   },
   refreshIcon: {
     fontSize: "20px",
     cursor: "pointer",
     transition: "transform 0.2s ease",
     position: "absolute",
-    right: "10px", // Push the icon to the right corner
+    right: "1px", // Push the icon to the right corner
     top: "50%", // Center vertically
     transform: "translateY(-50%)", // Adjust for vertical alignment
   },

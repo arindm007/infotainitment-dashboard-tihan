@@ -23,6 +23,8 @@
     "azure-maps-rest": "^2.1.1",
     "big-integer": "^1.6.52",
     "bootstrap": "^5.3.3",
+    "color-name-list": "^11.0.0",
+    "colors-list": "^1.0.1",
     "crypto": "^1.0.1",
     "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",

@@ -37,6 +37,11 @@ const styles = {
     justifyContent: "center",
     padding: "10px",
   },
+  '@media (max-width: 768px)': {
+    calendarContainer: {
+      maxHeight: '300px',
+    },
+  },
   title: {
     marginBottom: "10px",
   },

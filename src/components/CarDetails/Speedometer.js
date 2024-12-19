@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios"; // Import Axios for HTTP requests
 import "./Speedometer.css";
 
 const Speedometer = () => {
@@ -11,6 +12,32 @@ const Speedometer = () => {
   const tireLifetime = 332;
   const tireTemperature = 75;
 
+  // Fetch speed from API periodically
+  useEffect(() => {
+    const fetchSpeed = async () => {
+      try {
+        const response = await axios.get("http://192.168.20.166:5001/api/speed");
+        if (response.data && response.data.speed) {
+          // Extract numeric value from "data: 65"
+          const speedValue = parseInt(response.data.speed.split(":")[1].trim(), 10);
+  
+          // Check if the extracted value is a valid number
+          if (!isNaN(speedValue)) {
+            setSpeed(speedValue);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching speed from API:", error.message);
+      }
+    };
+  
+    // Fetch speed every 2 seconds
+    const interval = setInterval(fetchSpeed, 2000);
+  
+    // Cleanup interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
+  
   return (
     <div className="dashboard-container">
       {/* Speedometer */}
@@ -78,18 +105,6 @@ const Speedometer = () => {
             {g}
           </div>
         ))}
-      </div>
-
-      {/* Speed Control */}
-      <div className="speed-control">
-        
-        <button onClick={() => setSpeed((prev) => (prev > 0 ? prev - 10 : 0))}>
-          Decrease Speed
-        </button>
-
-        <button onClick={() => setSpeed((prev) => (prev < 140 ? prev + 10 : 140))}>
-          Increase Speed
-        </button>
       </div>
     </div>
   );

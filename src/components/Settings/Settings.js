@@ -16,14 +16,15 @@ import {
   Tooltip,
   Collapse,
   Alert,
-  Slider
+  Slider,
 } from "@mui/material";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { color, styled } from "@mui/system";
 import { FiShield, FiActivity, FiBell, FiShare2, FiSettings } from "react-icons/fi";
 import { IoColorWandSharp } from "react-icons/io5";
-
+import axios from "axios"; // Import Axios
+import { colornames } from "color-name-list"; // Import color-name-list for hex to name conversion
 
 const theme = createTheme({
   palette: {
@@ -37,6 +38,7 @@ const theme = createTheme({
     },
   },
 });
+
 // Styled component
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: "24px",
@@ -46,14 +48,14 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.primary,
   transition: "transform 0.2s ease-in-out",
   "&:hover": {
-    transform: "translateY(-2px)"
-  }
+    transform: "translateY(-2px)",
+  },
 }));
 
 // Components
 const SectionHeader = ({ icon: Icon, title }) => (
   <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-    <Icon size={24} style={{ marginRight: "12px" ,color:"inherit"}} />
+    <Icon size={24} style={{ marginRight: "12px", color: "inherit" }} />
     <Typography variant="h6">{title}</Typography>
   </Box>
 );
@@ -72,7 +74,7 @@ const SeatSettings = ({ reclination, setReclination }) => (
           step={1}
           valueLabelDisplay="auto"
           sx={{
-            color:(theme) => theme.palette.primary.main
+            color: (theme) => theme.palette.primary.main,
           }}
         />
       </Tooltip>
@@ -83,24 +85,54 @@ const SeatSettings = ({ reclination, setReclination }) => (
   </StyledPaper>
 );
 
-const AmbientColorSettings = ({ ambientColor, setAmbientColor }) => (
-  <StyledPaper>
-    <SectionHeader icon={IoColorWandSharp} title="Ambient Color Settings" />
-    <Box>
-      <Typography gutterBottom>Ambient Color</Typography>
-      <TextField
-        type="color"
-        value={ambientColor}
-        onChange={(e) => setAmbientColor(e.target.value)}
-        fullWidth
-        size="small"
-      />
-      <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
-        Set the ambient lighting color for your  car.
-      </Typography>
-    </Box>
-  </StyledPaper>
-);
+const AmbientColorSettings = ({ ambientColor, setAmbientColor }) => {
+  
+
+
+const handleColorChange = async (e) => {
+    const newColor = e.target.value;
+    setAmbientColor(newColor);
+
+      // Function to convert hex to color name
+const getColorName = (hex) => {
+    const closestColor = colornames.find(
+      (color) => color.hex.toLowerCase() === hex.toLowerCase()
+    );
+    return closestColor ? closestColor.name : "Unknown Color";
+  };
+  // Convert hex to color name
+  const colorName = getColorName(newColor);
+  console.log(colorName);
+  
+    try {
+      await axios.post("http://192.168.20.167:5000/set_color", {
+        "color": colorName,
+      });
+      console.log(`Color set successfully: ${newColor}`);
+    } catch (error) {
+      console.error(`Error setting color: ${error}`);
+    }
+  };
+
+  return (
+    <StyledPaper>
+      <SectionHeader icon={IoColorWandSharp} title="Ambient Color Settings" />
+      <Box>
+        <Typography gutterBottom>Ambient Color</Typography>
+        <TextField
+          type="color"
+          value={ambientColor}
+          onChange={handleColorChange}
+          fullWidth
+          size="small"
+        />
+        <Typography variant="body2" color="textSecondary" sx={{ mt: 1 }}>
+          Set the ambient lighting color for your car.
+        </Typography>
+      </Box>
+    </StyledPaper>
+  );
+};
 
 const SecuritySettings = ({ twoFactorEnabled, setTwoFactorEnabled }) => (
   <StyledPaper>
@@ -151,16 +183,9 @@ const NotificationPreferences = ({ notifications, handleNotificationChange }) =>
     <List>
       {Object.entries(notifications).map(([key, value]) => (
         <ListItem key={key} sx={{ px: 0 }}>
-          <ListItemText
-            primary={key.charAt(0).toUpperCase() + key.slice(1)}
-            secondary={`Receive ${key} notifications`}
-          />
+          <ListItemText primary={key.charAt(0).toUpperCase() + key.slice(1)} />
           <ListItemSecondaryAction>
-            <Switch
-              edge="end"
-              checked={value}
-              onChange={() => handleNotificationChange(key)}
-            />
+            <Switch edge="end" checked={value} onChange={() => handleNotificationChange(key)} />
           </ListItemSecondaryAction>
         </ListItem>
       ))}
@@ -174,18 +199,9 @@ const DataSharingPreferences = ({ dataSharing, handleDataSharingChange }) => (
     <List>
       {Object.entries(dataSharing).map(([key, value]) => (
         <ListItem key={key} sx={{ px: 0 }}>
-          <ListItemText
-            primary={key
-              .replace(/([A-Z])/g, " $1")
-              .replace(/^./, (str) => str.toUpperCase())}
-            secondary={`Allow ${key.replace(/([A-Z])/g, " $1").toLowerCase()}`}
-          />
+          <ListItemText primary={key.replace(/([A-Z])/g, " $1").replace(/^./, (str) => str.toUpperCase())} />
           <ListItemSecondaryAction>
-            <Checkbox
-              edge="end"
-              checked={value}
-              onChange={() => handleDataSharingChange(key)}
-            />
+            <Checkbox edge="end" checked={value} onChange={() => handleDataSharingChange(key)} />
           </ListItemSecondaryAction>
         </ListItem>
       ))}
@@ -195,34 +211,20 @@ const DataSharingPreferences = ({ dataSharing, handleDataSharingChange }) => (
 
 const AccountSettings = () => {
   const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
-  const [notifications, setNotifications] = useState({
-    email: true,
-    sms: false,
-    push: true
-  });
-  const [dataSharing, setDataSharing] = useState({
-    thirdParty: false,
-    ads: true,
-    profileVisibility: true
-  });
+  const [notifications, setNotifications] = useState({ email: true, sms: false, push: true });
+  const [dataSharing, setDataSharing] = useState({ thirdParty: false, ads: true, profileVisibility: true });
   const [showAlert, setShowAlert] = useState(false);
-  const [reclination, setReclination] = useState(45); // Default reclination angle
-  const [ambientColor, setAmbientColor] = useState("#fff5b6"); // Default ambient color
+  const [reclination, setReclination] = useState(45);
+  const [ambientColor, setAmbientColor] = useState("#fff5b6");
 
   const handleNotificationChange = (type) => {
-    setNotifications((prev) => ({
-      ...prev,
-      [type]: !prev[type]
-    }));
+    setNotifications((prev) => ({ ...prev, [type]: !prev[type] }));
     setShowAlert(true);
     setTimeout(() => setShowAlert(false), 3000);
   };
 
   const handleDataSharingChange = (type) => {
-    setDataSharing((prev) => ({
-      ...prev,
-      [type]: !prev[type]
-    }));
+    setDataSharing((prev) => ({ ...prev, [type]: !prev[type] }));
     setShowAlert(true);
     setTimeout(() => setShowAlert(false), 3000);
   };
@@ -230,7 +232,7 @@ const AccountSettings = () => {
   const activities = [
     { action: "Login attempt", date: "2024-12-16", status: "Successful", location: "Hyderabad, IN" },
     { action: "Password changed", date: "2024-12-15", status: "Successful", location: "Hyderabad, IN" },
-    { action: "Security settings modified", date: "2024-12-15", status: "Successful", location: "Hyderabad, IN" }
+    { action: "Security settings modified", date: "2024-12-15", status: "Successful", location: "Hyderabad, IN" },
   ];
 
   return (
@@ -247,33 +249,21 @@ const AccountSettings = () => {
           <AmbientColorSettings ambientColor={ambientColor} setAmbientColor={setAmbientColor} />
         </Grid>
         <Grid item xs={12}>
-          <SecuritySettings
-            twoFactorEnabled={twoFactorEnabled}
-            setTwoFactorEnabled={setTwoFactorEnabled}
-          />
+          <SecuritySettings twoFactorEnabled={twoFactorEnabled} setTwoFactorEnabled={setTwoFactorEnabled} />
         </Grid>
         <Grid item xs={12}>
           <RecentActivity activities={activities} />
         </Grid>
         <Grid item xs={12} md={6}>
-          <NotificationPreferences
-            notifications={notifications}
-            handleNotificationChange={handleNotificationChange}
-          />
+          <NotificationPreferences notifications={notifications} handleNotificationChange={handleNotificationChange} />
         </Grid>
         <Grid item xs={12} md={6}>
-          <DataSharingPreferences
-            dataSharing={dataSharing}
-            handleDataSharingChange={handleDataSharingChange}
-          />
+          <DataSharingPreferences dataSharing={dataSharing} handleDataSharingChange={handleDataSharingChange} />
         </Grid>
       </Grid>
 
       <Collapse in={showAlert}>
-        <Alert
-          severity="success"
-          sx={{ position: "fixed", bottom: 16, right: 16, zIndex: 1000 }}
-        >
+        <Alert severity="success" sx={{ position: "fixed", bottom: 16, right: 16, zIndex: 1000 }}>
           Settings updated successfully!
         </Alert>
       </Collapse>
@@ -286,6 +276,5 @@ const Settings = () => (
     <AccountSettings />
   </ThemeProvider>
 );
-
 
 export default Settings;

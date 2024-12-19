@@ -6,7 +6,8 @@
       "likes": "Most Reliable",
       "downloads": "150K",
       "rating": 4.9,
-      "description": "Provides seamless over-the-air software updates to ensure the latest features and security patches."
+      "description": "Provides seamless over-the-air software updates to ensure the latest features and security patches.",
+      "status": "under development"
   },
   {
       "id": 2,
@@ -15,7 +16,8 @@
       "likes": "Highly Rated",
       "downloads": "120K",
       "rating": 4.8,
-      "description": "Manages third-party app updates and security to enhance system stability and user experience."
+      "description": "Manages third-party app updates and security to enhance system stability and user experience.",
+      "status": "under development"
   },
   {
       "id": 3,
@@ -24,7 +26,8 @@
       "likes": "Most Popular",
       "downloads": "500K",
       "rating": 4.8,
-      "description": "Stream music and podcasts directly within the infotainment system for a superior in-car experience."
+      "description": "Stream music and podcasts directly within the infotainment system for a superior in-car experience.",
+      "status": "under development"
   },
   {
       "id": 4,
@@ -33,7 +36,8 @@
       "likes": "Trending",
       "downloads": "100K",
       "rating": 4.7,
-      "description": "Supports high-quality playback of videos for passenger entertainment during travel."
+      "description": "Supports high-quality playback of videos for passenger entertainment during travel.",
+      "status": "under development"
   },
   {
       "id": 5,
@@ -42,7 +46,8 @@
       "likes": "Innovative",
       "downloads": "80K",
       "rating": 4.9,
-      "description": "Monitors driver health and alertness using heart rate and BP sensors to ensure road safety."
+      "description": "Monitors driver health and alertness using heart rate and BP sensors to ensure road safety.",
+      "status": "under development"
   },
   {
       "id": 6,
@@ -51,16 +56,18 @@
       "likes": "Critical",
       "downloads": "90K",
       "rating": 4.8,
-      "description": "Uses advanced sensors to detect vehicles in blind spots and provide alerts to drivers."
+      "description": "Uses advanced sensors to detect vehicles in blind spots and provide alerts to drivers.",
+      "status": "under development"
   },
   {
-      "id": 7,
+      "id": 25,
       "name": "ADAS Features",
       "category": "Functionality",
       "likes": "Most Advanced",
       "downloads": "200K",
       "rating": 4.9,
-      "description": "Includes AEB (Automatic Emergency Braking), ACC (Adaptive Cruise Control), and Lane Keep Assist."
+      "description": "Includes AEB (Automatic Emergency Braking), ACC (Adaptive Cruise Control), and Lane Keep Assist.",
+      "status": "under development"
   },
   {
       "id": 8,
@@ -69,7 +76,8 @@
       "likes": "Highly Convenient",
       "downloads": "75K",
       "rating": 4.7,
-      "description": "Helps drivers with precise and effortless parking in tight spaces."
+      "description": "Helps drivers with precise and effortless parking in tight spaces.",
+      "status": "under development"
   },
   {
       "id": 9,
@@ -78,7 +86,8 @@
       "likes": "Stylish",
       "downloads": "65K",
       "rating": 4.6,
-      "description": "Customizable ambient lighting for enhanced in-car aesthetics and mood."
+      "description": "Customizable ambient lighting for enhanced in-car aesthetics and mood.",
+      "status": "under development"
   },
   {
       "id": 10,
@@ -87,7 +96,8 @@
       "likes": "User-Friendly",
       "downloads": "50K",
       "rating": 4.5,
-      "description": "Allows users to adjust seat height, light intensity, and other preferences for personalized comfort."
+      "description": "Allows users to adjust seat height, light intensity, and other preferences for personalized comfort.",
+      "status": "under development"
   },
   {
       "id": 11,
@@ -96,7 +106,8 @@
       "likes": "Reliable",
       "downloads": "95K",
       "rating": 4.8,
-      "description": "Tracks the health of critical sensors and provides alerts for predictive maintenance."
+      "description": "Tracks the health of critical sensors and provides alerts for predictive maintenance.",
+      "status": "under development"
   },
   {
       "id": 12,
@@ -105,7 +116,8 @@
       "likes": "Essential",
       "downloads": "85K",
       "rating": 4.7,
-      "description": "Monitors tire pressure in real-time and alerts the driver in case of abnormalities."
+      "description": "Monitors tire pressure in real-time and alerts the driver in case of abnormalities.",
+      "status": "under development"
   },
   {
       "id": 13,
@@ -114,7 +126,8 @@
       "likes": "Top-Secured",
       "downloads": "110K",
       "rating": 4.8,
-      "description": "Delivers regular security updates to protect against vulnerabilities and ensure data safety."
+      "description": "Delivers regular security updates to protect against vulnerabilities and ensure data safety.",
+      "status": "under development"
   },
   {
       "id": 14,
@@ -123,7 +136,8 @@
       "likes": "Reliable",
       "downloads": "85K",
       "rating": 4.7,
-      "description": "Automatically restarts critical systems in case of unexpected crashes to ensure minimal downtime."
+      "description": "Automatically restarts critical systems in case of unexpected crashes to ensure minimal downtime.",
+      "status": "under development"
   },
   {
       "id": 15,
@@ -132,7 +146,8 @@
       "likes": "Widely Loved",
       "downloads": "300K",
       "rating": 4.9,
-      "description": "Streams your favorite videos and playlists on the infotainment screen during long drives."
+      "description": "Streams your favorite videos and playlists on the infotainment screen during long drives.",
+      "status": "under development"
   },
   {
       "id": 16,
@@ -141,7 +156,8 @@
       "likes": "Fun & Interactive",
       "downloads": "70K",
       "rating": 4.5,
-      "description": "Offers a variety of casual games for passengers to enjoy while traveling."
+      "description": "Offers a variety of casual games for passengers to enjoy while traveling.",
+      "status": "under development"
   },
   {
       "id": 17,
@@ -150,7 +166,8 @@
       "likes": "Critical for Drivers",
       "downloads": "120K",
       "rating": 4.9,
-      "description": "Analyzes driver behavior and provides alerts when signs of fatigue or drowsiness are detected."
+      "description": "Analyzes driver behavior and provides alerts when signs of fatigue or drowsiness are detected.",
+      "status": "under development"
   },
   {
       "id": 18,
@@ -159,7 +176,8 @@
       "likes": "Life-Saving",
       "downloads": "95K",
       "rating": 4.8,
-      "description": "Warns drivers about potential collisions and assists in evasive maneuvers."
+      "description": "Warns drivers about potential collisions and assists in evasive maneuvers.",
+      "status": "under development"
   },
   {
       "id": 19,
@@ -168,7 +186,8 @@
       "likes": "Intelligent",
       "downloads": "140K",
       "rating": 4.8,
-      "description": "Voice-controlled assistant for navigation, calling, and controlling car settings."
+      "description": "Voice-controlled assistant for navigation, calling, and controlling car settings.",
+      "status": "under development"
   },
   {
       "id": 20,
@@ -177,7 +196,8 @@
       "likes": "Most Useful",
       "downloads": "190K",
       "rating": 4.9,
-      "description": "Provides real-time traffic updates and adaptive route suggestions for stress-free travel."
+      "description": "Provides real-time traffic updates and adaptive route suggestions for stress-free travel.",
+      "status": "under development"
   },
   {
       "id": 21,
@@ -186,7 +206,8 @@
       "likes": "Comfort-Oriented",
       "downloads": "60K",
       "rating": 4.6,
-      "description": "Allows users to adjust climate settings for individual zones within the car."
+      "description": "Allows users to adjust climate settings for individual zones within the car.",
+      "status": "under development"
   },
   {
       "id": 22,
@@ -195,7 +216,8 @@
       "likes": "Innovative",
       "downloads": "45K",
       "rating": 4.5,
-      "description": "Automatically adjusts ambient lighting based on detected or chosen moods."
+      "description": "Automatically adjusts ambient lighting based on detected or chosen moods.",
+      "status": "under development"
   },
   {
       "id": 23,
@@ -204,7 +226,8 @@
       "likes": "Comprehensive",
       "downloads": "88K",
       "rating": 4.7,
-      "description": "Tracks battery performance and provides alerts for necessary maintenance or replacement."
+      "description": "Tracks battery performance and provides alerts for necessary maintenance or replacement.",
+      "status": "under development"
   },
   {
       "id": 24,
@@ -213,6 +236,19 @@
       "likes": "Convenient",
       "downloads": "110K",
       "rating": 4.9,
-      "description": "Allows remote access to lock, unlock, or start the vehicle using a mobile app."
+      "description": "Allows remote access to lock, unlock, or start the vehicle using a mobile app.",
+      "status": "under development"
+
+  },
+  {
+    "id": 7,
+    "name": "Video Call",
+    "category": "Functionality",
+    "likes": "Highly Interactive",
+    "downloads": "50K",
+    "rating": 4.6,
+    "description": "Enables real-time video communication directly from the vehicle's infotainment system.",
+    "status": "available"
   }
+  
 ]

@@ -86,3 +86,10 @@
     margin-top: 16px;
   }
   
+
+  @media (max-width: 768px) {
+    .notification-pane {
+      width: 100%; /* Full width on smaller screens */
+      padding: 10px;
+    }
+  }
