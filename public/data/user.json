@@ -1,0 +1,53 @@
+[
+  {
+    "email": "user1",
+    "password": "password123",
+    "preferredColor": "#FF5733",
+    "seatSettings": {
+        "seatbackAngle": 10,
+        "slidingDistance": 20
+    },
+    "steeringSettings": {
+      "slidingDistance": 10,
+      "steeringheight": 20
+    },
+    "mirrorSettings": {
+      "azimuthAngle": 45,
+      "polarAngle": 43
+    }
+  },
+  {
+    "email": "user2",
+    "password": "securepass456",
+    "preferredColor": "#33FF57",
+    "seatSettings": {
+        "seatbackAngle": 12,
+        "slidingDistance": 25
+    },
+    "steeringSettings": {
+      "slidingDistance": 3,
+      "steeringheight": 7
+    },
+    "mirrorSettings": {
+      "azimuthAngle": 27,
+      "polarAngle": 31
+    }
+  },
+  {
+    "email": "user3",
+    "password": "mypassword789",
+    "preferredColor": "#3357FF",
+    "seatSettings": {
+        "seatbackAngle": 8,
+        "slidingDistance": 20
+    },
+    "steeringSettings": {
+      "slidingDistance": 12,
+      "steeringheight": 30
+    },
+    "mirrorSettings": {
+      "azimuthAngle": 35,
+      "polarAngle": 42
+    }
+  }
+]

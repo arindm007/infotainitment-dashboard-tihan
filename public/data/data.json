@@ -161,13 +161,13 @@
   },
   {
       "id": 17,
-      "name": "Fatigue Alert System",
+      "name": "Traffic-light & Sign detection",
       "category": "Safety",
       "likes": "Critical for Drivers",
       "downloads": "120K",
       "rating": 4.9,
-      "description": "Analyzes driver behavior and provides alerts when signs of fatigue or drowsiness are detected.",
-      "status": "under development"
+      "description": "Acts accordingly with respect to traffic light and traffic sign.",
+      "status": "available"
   },
   {
       "id": 18,

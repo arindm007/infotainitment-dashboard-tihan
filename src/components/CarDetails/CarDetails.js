@@ -33,17 +33,17 @@ const styles = {
   container: {
     width: "100%",
     minHeight: "100px",
-    maxHeight: "600px",
+    maxHeight: "900px",
     padding: "5px",
     color: "white",
     borderRadius: "10px",
   },
   modelWrapper: {
     width: "100%",
-    height: "300px", // Adjust height based on your model
+    height: "900px", // Adjust height based on your model
     marginBottom: "10px", // Add space between model and text
     minHeight: "100px",
-    maxHeight: "300px",
+    maxHeight: "700px",
     position: "relative", // Added for absolute positioning of refresh icon
   },
   titleWrapper: {

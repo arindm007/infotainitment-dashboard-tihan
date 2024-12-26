@@ -38,21 +38,17 @@ console.log(CLIENT_ID);
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+  const [userData, setUserData] = useState("");
   // Check authentication status on mount
   useEffect(() => {
-    const checkAuthStatus = async () => {
-      try {
-        const response = await axios.get("/api/auth/status/", {
-          withCredentials: true, // Ensures cookies are sent for authentication
-        });
-        setIsAuthenticated(response.data.isAuthenticated);
-      } catch (error) {
-        console.error("Error checking auth status:", error);
-        setIsAuthenticated(false);
-      }
-    };
-    checkAuthStatus();
+    const storedUserData = localStorage.getItem('userData');
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+      setUserData(null);
+    }
   }, []);
 
 
@@ -71,13 +67,13 @@ function App() {
           <div style={styles.contentContainer}>
             <Routes>
               {/* Public Route */}
-              <Route path="/auth" element={<AuthPage setIsAuthenticated={setIsAuthenticated} />} />
+              <Route path="/auth" element={<AuthPage setIsAuthenticated={setIsAuthenticated} setUserData={setUserData}/>} />
 
               {/* Private Routes */}
               <Route
                 path="/"
                 element={
-                  // <PrivateRoute isAuthenticated={isAuthenticated}>
+                  //<PrivateRoute isAuthenticated={isAuthenticated}>
                     <div style={styles.homeContainer}>
                       <div style={styles.carContainer}>
                         <CarDetails />
@@ -93,15 +89,15 @@ function App() {
                           <div>
                             {/* Calender Component here */}
                             <CalendarComponent />
-                          </div>
+                          </div>    
                           {/* <div style={styles.NotificationsPane}> */}
                             {/* notification componen here */}
-                            <NotificationsPane />
+                           <NotificationsPane />
                           {/* </div> */}
                         </div>
                       </div>
                     </div>
-                  // </PrivateRoute>
+                  //</PrivateRoute>
                 }
               />
               <Route
