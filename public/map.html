@@ -31,7 +31,7 @@
 
         // Function to fetch the coordinates and update the markers on the map
         function updateMap() {
-            fetch('/api/coordinates')
+            fetch('http://127.0.0.1:5129/api/coordinates')
                 .then(response => response.json())
                 .then(data => {
                     // Check if there are new coordinates
