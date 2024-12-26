@@ -2,22 +2,37 @@ import React, { useState, useEffect } from "react";
 import axios from "axios"; // Import Axios for HTTP requests
 import Decimal from "decimal.js"; // Import Decimal for precise calculations
 import "./Speedometer.css";
- 
+
 const Speedometer = () => {
   const [speed, setSpeed] = useState(0); // Initial speed value
   const [gear, setGear] = useState("N"); // Initial gear
   const [steeringAngle, setSteeringAngle] = useState(0); // Steering angle
   const [emergencyBrakeStatus, setEmergencyBrakeStatus] = useState(0); // Emergency brake status
-  const [networkStatus, setNetworkStatus] = useState("Connected"); // Network status
+  const [networkStatus, setNetworkStatus] = useState("WiFi TiHAN"); // Network status
   const [downloadSpeed, setDownloadSpeed] = useState(new Decimal(0)); // Download speed
   const [obstacleDistance, setObstacleDistance] = useState(new Decimal(0)); // Obstacle distance
- 
+
   // Placeholder values for other metrics
   const batteryPercentage = 90;
   const tireLifetime = 332; // Assuming this is still needed
   const tireTemperature = 75; // Assuming this is still needed
- 
-  // Fetch speed from API periodically
+
+  useEffect(() => {
+    // Function to handle network status toggling
+    const updateNetworkStatus = () => {
+      let toggle = true;
+      const toggleNetwork = () => {
+        setNetworkStatus(toggle ? "WiFi" : "5G");
+        toggle = !toggle;
+        setTimeout(toggleNetwork, toggle ? 60000 : 20000); // 1 min for 5G, 20 sec for WiFi TiHAN
+      };
+      toggleNetwork();
+    };
+
+    updateNetworkStatus(); // Start the network toggling
+  }, []);
+
+  // Fetch speed, steering angle, etc. periodically
   useEffect(() => {
     const fetchSpeed = async () => {
       try {
@@ -85,18 +100,14 @@ const Speedometer = () => {
     };
  
     // Fetch speed, steering angle, emergency brake status, network status, and obstacle distance every 2 seconds
+
     const interval = setInterval(() => {
       fetchSpeed();
-      fetchSteeringAngle();
-      fetchEmergencyBrakeStatus();
-      fetchNetworkStatus();
-      fetchObstacleDistance();
     }, 2000);
- 
-    // Cleanup interval on component unmount
+
     return () => clearInterval(interval);
   }, []);
- 
+
   return (
     <div className="dashboard-container">
       {/* Speedometer */}
@@ -132,33 +143,27 @@ const Speedometer = () => {
           <p>km/h</p>
         </div>
       </div>
- 
+
       {/* Information Cards */}
       <div className="info-container">
         <div className="info-card">
           <h4>Obstacle Distance</h4>
-          <p>{obstacleDistance.toFixed(2)} meters</p> {/* Displaying obstacle distance */}
+          <p>{obstacleDistance.toFixed(2)} meters</p>
         </div>
         <div className="info-card">
           <h4>Steering Angle</h4>
-          <p>{steeringAngle}°</p> {/* Displaying the steering angle */}
+          <p>{steeringAngle}°</p>
         </div>
         <div className="info-card">
           <h4>Emergency Brake</h4>
-          <p>{emergencyBrakeStatus ? "Engaged" : "Released"}</p> {/* Displaying emergency brake status */}
+          <p>{emergencyBrakeStatus ? "Engaged" : "Released"}</p>
         </div>
         <div className="info-card">
           <h4>Network Status</h4>
-          {/* <p>{networkStatus}</p> Displaying network status */}
-          <p>Connected</p> {/* Displaying network status */}
-
+          <p>{networkStatus}</p>
         </div>
-        {/* <div className="info-card">
-          <h4>Download Speed</h4>
-          <p>{downloadSpeed.toFixed(2)} Mbps</p> {/* Displaying download speed 
-        </div> */}
       </div>
- 
+
       {/* Gear Selector */}
       <div className="gear-selector">
         {["R", "N", "F"].map((g) => (
@@ -174,7 +179,7 @@ const Speedometer = () => {
     </div>
   );
 };
- 
+
 export default Speedometer;
 
 
