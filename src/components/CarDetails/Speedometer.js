@@ -21,7 +21,7 @@ const Speedometer = () => {
   useEffect(() => {
     const fetchSpeed = async () => {
       try {
-        const response = await axios.get("http://192.168.20.223:5001/api/speed");
+        const response = await axios.get("http://192.168.236.37:5001/api/speed");
         if (response.data && response.data.speed) {
           const speedValue = parseInt(response.data.speed.split(":")[1].trim(), 10);
           if (!isNaN(speedValue)) {
@@ -36,7 +36,7 @@ const Speedometer = () => {
     // Fetch steering angle from API periodically
     const fetchSteeringAngle = async () => {
       try {
-        const response = await fetch("http://192.168.20.223:5023/api/steer");
+        const response = await fetch("http://192.168.236.37:5023/api/steer");
         const data = await response.json();
         const steerValue = parseFloat(data.steer.split(': ')[1]);
         console.log("Steering angle fetched:", steerValue); // For debugging
@@ -49,7 +49,7 @@ const Speedometer = () => {
     // Fetch emergency brake status
     const fetchEmergencyBrakeStatus = async () => {
       try {
-        const response = await fetch("http://192.168.20.223:5023/api/emergency");
+        const response = await fetch("http://192.168.236.37:5023/api/emergency");
         const data = await response.json();
         const brakeValue = parseFloat(data.emergency_status.split(': ')[1]);
         setEmergencyBrakeStatus(brakeValue); // Update the emergency brake status state
@@ -61,7 +61,7 @@ const Speedometer = () => {
     // Fetch internet speed data (network status and download speed)
     const fetchNetworkStatus = async () => {
       try {
-        const response = await fetch("http://192.168.20.223:5023/speedtest");
+        const response = await fetch("http://192.168.236.37:5023/speedtest");
         const data = await response.json();
         const downloadValue = parseFloat(data.download_speed.split(' ')[0]);
         setDownloadSpeed(new Decimal(downloadValue)); // Set download speed
@@ -75,7 +75,7 @@ const Speedometer = () => {
     // Fetch obstacle distance
     const fetchObstacleDistance = async () => {
       try {
-        const response = await fetch("http://192.168.20.223:5023/api/dis");
+        const response = await fetch("http://192.168.236.37:5023/api/dis");
         const data = await response.json();
         const distanceValue = parseFloat(data.min_dis.split(': ')[1]);
         setObstacleDistance(new Decimal(distanceValue)); // Update obstacle distance
@@ -149,7 +149,9 @@ const Speedometer = () => {
         </div>
         <div className="info-card">
           <h4>Network Status</h4>
-          <p>{networkStatus}</p> {/* Displaying network status */}
+          {/* <p>{networkStatus}</p> Displaying network status */}
+          <p>Connected</p> {/* Displaying network status */}
+
         </div>
         {/* <div className="info-card">
           <h4>Download Speed</h4>
@@ -159,7 +161,7 @@ const Speedometer = () => {
  
       {/* Gear Selector */}
       <div className="gear-selector">
-        {["R", "P", "N", "D", "S"].map((g) => (
+        {["R", "N", "F"].map((g) => (
           <div
             key={g}
             className={`gear ${gear === g ? "active-gear" : ""}`}
