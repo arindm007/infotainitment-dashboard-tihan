@@ -8,7 +8,7 @@ const Speedometer = () => {
   const [gear, setGear] = useState("N"); // Initial gear
   const [steeringAngle, setSteeringAngle] = useState(0); // Steering angle
   const [emergencyBrakeStatus, setEmergencyBrakeStatus] = useState(0); // Emergency brake status
-  const [networkStatus, setNetworkStatus] = useState("WiFi TiHAN"); // Network status
+  const [networkStatus, setNetworkStatus] = useState("WiFi"); // Network status (starts with WiFi)
   const [downloadSpeed, setDownloadSpeed] = useState(new Decimal(0)); // Download speed
   const [obstacleDistance, setObstacleDistance] = useState(new Decimal(0)); // Obstacle distance
 
@@ -19,18 +19,30 @@ const Speedometer = () => {
 
   useEffect(() => {
     // Function to handle network status toggling
-    const updateNetworkStatus = () => {
+    const toggleNetworkStatus = () => {
       let toggle = true;
       const toggleNetwork = () => {
-        setNetworkStatus(toggle ? "WiFi" : "5G");
+        if (toggle) {
+          setNetworkStatus("WiFi"); // Set network to WiFi
+        } else {
+          setNetworkStatus("5G"); // Set network to 5G
+        }
         toggle = !toggle;
-        setTimeout(toggleNetwork, toggle ? 40000 : 120000); // 1 min for 5G, 20 sec for WiFi TiHAN
       };
-      toggleNetwork();
+
+      // Start by setting WiFi for 40 seconds, then switch to 5G for 2 minutes
+      const intervalId = setInterval(() => {
+        toggleNetwork();
+      }, 40000); // Change every 40 seconds between WiFi and 5G
+      setTimeout(() => {
+        clearInterval(intervalId); // Clear the interval after 2 minutes
+        setTimeout(toggleNetwork, 120000); // Switch to WiFi after 2 minutes (120000 ms)
+      }, 120000); // Reset the cycle after 2 minutes
     };
 
-    updateNetworkStatus(); // Start the network toggling
-  }, []);  
+    toggleNetworkStatus(); // Start toggling the network status
+
+  }, []); // This useEffect runs only once when the component mounts
 
   // Fetch speed, steering angle, etc. periodically
   useEffect(() => {
@@ -84,10 +96,8 @@ const Speedometer = () => {
         const response = await axios.get("http://127.0.0.1:5023/speedtest");
         const downloadValue = parseFloat(response.data.download_speed.split(' ')[0]);
         setDownloadSpeed(new Decimal(downloadValue)); // Set download speed
-        setNetworkStatus(downloadValue > 0 ? "Connected" : "Disconnected"); // Update network status based on download speed
       } catch (error) {
         console.error("Error fetching speedtest data:", error);
-        setNetworkStatus("Disconnected"); // Set to disconnected on error
       }
     };
 
