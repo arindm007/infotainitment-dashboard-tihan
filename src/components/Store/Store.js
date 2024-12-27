@@ -35,17 +35,70 @@ const Store = () => {
     setLoadingFeature(featureName);
     setLoadingAction("Installing");
 
+    if (featureName === "Livox 2.0.0") {
+      fetch('http://127.0.0.1:5000/install-livox', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ action: 'install' })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          const updatedInstalledFeatures = [...installedFeatures, featureName];
+          setInstalledFeatures(updatedInstalledFeatures);
+          localStorage.setItem("installedFeatures", JSON.stringify(updatedInstalledFeatures));
+  
+          // Wait for the process to finish, then show the alert after 10 seconds
+          setTimeout(() => {
+            // Hide loading screen
+            setIsLoading(false);
+            setLoadingFeature("");
+            setLoadingAction("");
+  
+            // Show alert after 10 seconds
+            alert(`${featureName} installed successfully! Script execution completed: ${data.message}`);
+            window.location.reload(); // Reload to update the sidebar
+          }, 10000); // Delay alert and reload for 10 seconds
+        } else {
+          alert(`Error during ${featureName} installation: ${data.error}`);
+          setIsLoading(false); // Hide loading on error
+        }
+      })
+      .catch(error => {
+        alert(`Failed to execute installation script: ${error.message}`);
+        setIsLoading(false); // Hide loading on error
+      });
+    } else {
+      // Simulate a 10-second installation process for other features
+      setTimeout(() => {
+        const updatedInstalledFeatures = [...installedFeatures, featureName];
+        setInstalledFeatures(updatedInstalledFeatures);
+        localStorage.setItem("installedFeatures", JSON.stringify(updatedInstalledFeatures));
+  
+        // Wait for 10 seconds before showing the alert and reloading the page
+        setTimeout(() => {
+          setIsLoading(false); // Hide loading screen
+  
+          // Show alert after 10 seconds
+          alert(`${featureName} installed successfully!`);
+          window.location.reload(); // Reload to update the sidebar
+        }, 8000); // Delay alert and reload for 10 seconds
+      }, 8000); // Initial delay for the installation simulation
+    }
+
     // Simulate a 10-second installation process
-    setTimeout(() => {
-      const updatedInstalledFeatures = [...installedFeatures, featureName];
-      setInstalledFeatures(updatedInstalledFeatures);
-      localStorage.setItem("installedFeatures", JSON.stringify(updatedInstalledFeatures));
-      setIsLoading(false);
-      setLoadingFeature("");
-      setLoadingAction("");
-      alert(`${featureName} installed successfully!`);
-      window.location.reload(); // Reload to update the sidebar
-    }, 10000); // 10 seconds
+    // setTimeout(() => {
+    //   const updatedInstalledFeatures = [...installedFeatures, featureName];
+    //   setInstalledFeatures(updatedInstalledFeatures);
+    //   localStorage.setItem("installedFeatures", JSON.stringify(updatedInstalledFeatures));
+    //   setIsLoading(false);
+    //   setLoadingFeature("");
+    //   setLoadingAction("");
+    //   alert(`${featureName} installed successfully!`);
+    //   window.location.reload(); // Reload to update the sidebar
+    // }, 10000); // 10 seconds
   };
 
   // Handle Uninstall with 4-second Loading

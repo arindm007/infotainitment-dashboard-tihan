@@ -24,7 +24,7 @@ const Speedometer = () => {
       const toggleNetwork = () => {
         setNetworkStatus(toggle ? "WiFi" : "5G");
         toggle = !toggle;
-        setTimeout(toggleNetwork, toggle ? 60000 : 20000); // 1 min for 5G, 20 sec for WiFi TiHAN
+        setTimeout(toggleNetwork, toggle ? 40000 : 120000); // 1 min for 5G, 20 sec for WiFi TiHAN
       };
       toggleNetwork();
     };
@@ -51,7 +51,7 @@ const Speedometer = () => {
     // Fetch steering angle from API periodically
     const fetchSteeringAngle = async () => {
       try {
-        const response = await fetch("http://192.168.236.37:5023/api/steer");
+        const response = await fetch("http://192.168.236.37:5001/api/steer");
         const data = await response.json();
         const steerValue = parseFloat(data.steer.split(': ')[1]);
         console.log("Steering angle fetched:", steerValue); // For debugging
@@ -64,7 +64,7 @@ const Speedometer = () => {
     // Fetch emergency brake status
     const fetchEmergencyBrakeStatus = async () => {
       try {
-        const response = await fetch("http://192.168.236.37:5023/api/emergency");
+        const response = await fetch("http://192.168.236.37:5001/api/emergency");
         const data = await response.json();
         const brakeValue = parseFloat(data.emergency_status.split(': ')[1]);
         setEmergencyBrakeStatus(brakeValue); // Update the emergency brake status state
@@ -90,7 +90,7 @@ const Speedometer = () => {
     // Fetch obstacle distance
     const fetchObstacleDistance = async () => {
       try {
-        const response = await fetch("http://192.168.236.37:5023/api/dis");
+        const response = await fetch("http://192.168.236.37:5001/api/dis");
         const data = await response.json();
         const distanceValue = parseFloat(data.min_dis.split(': ')[1]);
         setObstacleDistance(new Decimal(distanceValue)); // Update obstacle distance
