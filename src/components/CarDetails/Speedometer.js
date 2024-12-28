@@ -17,80 +17,118 @@ const Speedometer = () => {
   const tireLifetime = 332; // Assuming this is still needed
   const tireTemperature = 75; // Assuming this is still needed
 
-  // Function to toggle network status
-  const toggleNetworkStatus = () => {
-    let toggle = true;
-    const toggleNetwork = () => {
-      if (toggle) {
-        setNetworkStatus("WiFi"); // Set network to WiFi
-      } else {
-        setNetworkStatus("5G"); // Set network to 5G
-      }
-      toggle = !toggle;
-    };
-
-    // Start by setting WiFi for 40 seconds, then switch to 5G for 2 minutes
-    const intervalId = setInterval(() => {
-      toggleNetwork();
-    }, 40000); // Change every 40 seconds between WiFi and 5G
-    setTimeout(() => {
-      clearInterval(intervalId); // Clear the interval after 2 minutes
-      setTimeout(toggleNetwork, 120000); // Switch to WiFi after 2 minutes (120000 ms)
-    }, 120000); // Reset the cycle after 2 minutes
-  };
-
-  // Fetch data from APIs
-  const fetchData = async () => {
-    try {
-      const responses = await Promise.all([
-        axios.get("http://127.0.0.1:5001/api/speed"),
-        axios.get("http://127.0.0.1:5001/api/steer"),
-        axios.get("http://127.0.0.1:5001/api/emergency"),
-        // axios.get("http://127.0.0.1:5023/speedtest"),
-        axios.get("http://127.0.0.1:5001/api/dis")
-      ]);
-
-      // Handle Speed Response
-      const speedValue = parseInt(responses[0].data.speed.split(":")[1].trim(), 10);
-      if (!isNaN(speedValue)) {
-        setSpeed(speedValue);
-      }
-
-      // Handle Steering Angle Response
-      const steerValue = parseFloat(responses[1].data.steer.split(": ")[1]);
-      setSteeringAngle(steerValue);
-
-      // Handle Emergency Brake Status Response
-      const brakeValue = parseFloat(responses[2].data.emergency_status.split(": ")[1]);
-      setEmergencyBrakeStatus(brakeValue);
-
-      // Handle Network Speed Response
-      const downloadValue = parseFloat(responses[3].data.download_speed.split(' ')[0]);
-      setDownloadSpeed(new Decimal(downloadValue));
-
-      // Handle Obstacle Distance Response
-      const distanceValue = parseFloat(responses[4].data.min_dis.split(": ")[1]);
-      setObstacleDistance(new Decimal(distanceValue));
-
-    } catch (error) {
-      console.error("Error fetching data:", error.message);
-    }
-  };
-
-  // Fetch speed and other metrics every 2 seconds
   useEffect(() => {
-    // Start toggling the network status
-    toggleNetworkStatus();
-
-    const intervalId = setInterval(() => {
-      fetchData(); // Fetch data every  1seconds
-    }, 1000);
-
-    // Cleanup the interval on component unmount
-    return () => {
-      clearInterval(intervalId);
+    // Function to handle network status toggling
+    const toggleNetworkStatus = () => {
+      let toggle = true;
+      const toggleNetwork = () => {
+        if (toggle) {
+          setNetworkStatus("WiFi"); // Set network to WiFi
+        } else {
+          setNetworkStatus("5G"); // Set network to 5G
+        }
+        toggle = !toggle;
+      };
+      // Start by setting WiFi for 40 seconds, then switch to 5G for 2 minutes
+      const intervalId = setInterval(() => {
+        toggleNetwork();
+      }, 40000); // Change every 40 seconds between WiFi and 5G
+      setTimeout(() => {
+        clearInterval(intervalId); // Clear the interval after 2 minutes
+        setTimeout(toggleNetwork, 120000); // Switch to WiFi after 2 minutes (120000 ms)
+      }, 120000); // Reset the cycle after 2 minutes
     };
-  }, []); // Empty dependency array to run once on mount
+
+    toggleNetworkStatus(); // Start toggling the network status
+
+  }, []); // This useEffect runs only once when the component mounts
+
+  // Fetch speed, steering angle, etc. periodically
+  useEffect(() => {
+    const fetchSpeed = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:5001/api/speed");
+        if (response.data && response.data.speed) {
+          const speedValue = parseInt(response.data.speed.split(":")[1].trim(), 10);
+          if (!isNaN(speedValue)) {
+            setSpeed(speedValue);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching speed from API:", error.message);
+      }
+    };
+
+    // Fetch steering angle using axios or generate random value based on gear
+    const fetchSteeringAngle = async () => {
+      if (gear === "F") {
+        // Generate a random value between -6 and +8 if gear is "F"
+        const randomSteer = (Math.random() * 14) - 6; // Random number between -6 and +8
+        setSteeringAngle(randomSteer.toFixed(2)); // Set steering angle with dummy data
+      } else if (gear === "N") {
+        // Fetch actual data from the API if gear is "N"
+        try {
+          const response = await axios.get("http://127.0.0.1:5001/api/steer");
+          const steerValue = parseFloat(response.data.steer.split(": ")[1]);
+          setSteeringAngle(steerValue); // Set the steering angle based on API data
+        } catch (error) {
+          console.error("Error fetching steering angle:", error);
+          setSteeringAngle(0); // If API fails, set to 0
+        }
+      }
+    };
+
+    // Fetch emergency brake status using axios
+    const fetchEmergencyBrakeStatus = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:5001/api/emergency");
+        const brakeValue = parseFloat(response.data.emergency_status.split(": ")[1]);
+        setEmergencyBrakeStatus(brakeValue); // Update the emergency brake status state
+      } catch (error) {
+        console.error("Error fetching emergency brake status:", error);
+      }
+    };
+
+    // Fetch internet speed data (network status and download speed)
+    const fetchNetworkStatus = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:5023/speedtest");
+        const downloadValue = parseFloat(response.data.download_speed.split(' ')[0]);
+        setDownloadSpeed(new Decimal(downloadValue)); // Set download speed
+      } catch (error) {
+        console.error("Error fetching speedtest data:", error);
+      }
+    };
+
+    // Fetch obstacle distance using axios or generate random value based on gear
+    const fetchObstacleDistance = async () => {
+      if (gear === "F") {
+        // Generate a random value between 1 and 15 if gear is "F"
+        const randomDistance = (Math.random() * 14) + 1; // Random number between 1 and 15
+        setObstacleDistance(new Decimal(randomDistance.toFixed(2))); // Set obstacle distance with dummy data
+      } else if (gear === "N") {
+        // Fetch actual data from the API if gear is "N"
+        try {
+          const response = await axios.get("http://127.0.0.1:5001/api/dis");
+          const distanceValue = parseFloat(response.data.min_dis.split(": ")[1]);
+          setObstacleDistance(new Decimal(distanceValue)); // Set the obstacle distance based on API data
+        } catch (error) {
+          console.error("Error fetching obstacle distance:", error);
+          setObstacleDistance(new Decimal(0)); // If API fails, set to 0
+        }
+      }
+    };
+
+    // Fetch all data every 2 seconds
+    const interval = setInterval(() => {
+      fetchSpeed();
+      fetchSteeringAngle();
+      fetchEmergencyBrakeStatus();
+      fetchNetworkStatus();
+      fetchObstacleDistance();
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [gear]);  // Add 'gear' as a dependency so it triggers when the gear changes
 
   return (
     <div className="dashboard-container">
