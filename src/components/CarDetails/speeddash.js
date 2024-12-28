@@ -65,15 +65,15 @@ const Speedometer = () => {
         }
       }
 
-      // Fetch emergency brake status
-      const brakeData = await fetchWithRetry(
-        "http://127.0.0.1:5001/api/emergency",
-        FALLBACK_VALUES.emergencyBrakeStatus
-      );
-      if (brakeData && brakeData.emergency_status) {
-        const brakeValue = parseFloat(brakeData.emergency_status.split(": ")[1]);
-        setEmergencyBrakeStatus(brakeValue);
-      }
+    //   // Fetch emergency brake status
+    //   const brakeData = await fetchWithRetry(
+    //     "http://127.0.0.1:5001/api/emergency",
+    //     FALLBACK_VALUES.emergencyBrakeStatus
+    //   );
+    //   if (brakeData && brakeData.emergency_status) {
+    //     const brakeValue = parseFloat(brakeData.emergency_status.split(": ")[1]);
+    //     setEmergencyBrakeStatus(brakeValue);
+    //   }
 
       // Fetch network status
       const networkData = await fetchWithRetry(
@@ -182,7 +182,8 @@ const Speedometer = () => {
         </div>
         <div className="info-card">
           <h4>Emergency Brake</h4>
-          <p>{emergencyBrakeStatus ? "Engaged" : "Released"}</p>
+          {/* <p>{emergencyBrakeStatus ? "Engaged" : "Released"}</p> */}
+          {<p>"Released"</p>}
         </div>
         <div className="info-card">
           <h4>Network Status</h4>
