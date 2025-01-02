@@ -1,59 +1,47 @@
 /* Main container for the notification pane */
 .notification-pane {
-    width: 600px;
-    background-color: #1e1e1e; /* Matches dark theme background */
+    width: 400px;
+    background-color: #1e1e1e;
     border-radius: 8px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
     padding: 16px;
-    max-height: auto; /* No fixed height by default */
-    overflow: hidden; /* Hide scrollbar initially */
-    color: #ffffff; /* White text for dark theme */
-    transition: max-height 0.3s ease; /* Smooth expand animation */
-  }
-  
-  /* Expanded state for showing all notifications */
-  .notification-pane.expanded {
-    max-height: 600px; /* Allow scrolling only when expanded */
-    overflow-y: auto;
-  }
-  
-  /* Header styles */
-  .notification-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-  }
-  
-  .notification-header h6 {
-    font-weight: bold;
-    margin: 0;
     color: #ffffff;
+    position: relative;
   }
   
-  /* Notification item */
-  .notification-item {
-    display: flex;
-    align-items: flex-start;
-    padding: 16px;
-    margin-bottom: 8px;
+  /* Popup container */
+  .notification-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8); /* Slight transparency */
+    padding: 24px;
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.05); /* Dark background for unread */
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
   }
   
-  .notification-item.read {
-    background-color: rgba(144, 202, 249, 0.1); /* Slight highlight for read notifications */
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
   
-  .notification-icon {
-    margin-right: 16px;
-  }
-  
-  /* No notifications message */
-  .no-notifications {
-    text-align: center;
-    color: #b0b0b0; /* Grey text for no notifications */
+  /* Background overlay */
+  .notification-popup::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
   }
   
   /* Button styles */
@@ -73,11 +61,49 @@
   }
   
   .button.secondary {
-    background-color: #f44336; /* Red for secondary buttons */
+    background-color: #f44336;
   }
   
   .button.secondary:hover {
     background-color: #e57373;
+  }
+  
+  /* Header styles */
+  .notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .notification-header h6 {
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  /* Notification item */
+  .notification-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .notification-item.read {
+    background-color: rgba(144, 202, 249, 0.1);
+  }
+  
+  .notification-icon {
+    margin-right: 16px;
+  }
+  
+  /* No notifications message */
+  .no-notifications {
+    text-align: center;
+    color: #b0b0b0;
   }
   
   /* View all button container */
@@ -86,10 +112,8 @@
     margin-top: 16px;
   }
   
-
   @media (max-width: 768px) {
     .notification-pane {
-      width: 100%; /* Full width on smaller screens */
-      padding: 10px;
+      width: 100%;
     }
   }
